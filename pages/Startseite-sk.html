@@ -35,13 +35,17 @@
     <header>
         <nav class="container">
             <div class="logo">
-            <img src="../images/Logo-Photoroom.png" alt="Omicron Logo">
-        </div>
-            <ul class="nav-links">
-                <li><a href="#home">Domov</a></li>
-                 <li><a href="#about">O nás</a></li>
-                 <li><a href="#services">Služby</a></li>
-               
+                <img src="../images/Logo-Photoroom.png" alt="Omicron Logo">
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="Startseite-sk.html">Domov</a></li>
+                <li><a href="Startseite-sk.html#about">O nás</a></li>
+                <li><a href="Startseite-sk.html#services">Služby</a></li>
             </ul>
             <div class="language-selector">
                 <button class="language-toggle" id="languageToggle" aria-label="Select Language">
@@ -143,7 +147,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Prečo vybrať Omicron?</h2>
-                <p>Ponúkame celkové fotovoltaické riešenia s viac ako 5 rokmi skúsenosti a prenosným certifikátom v oblasti fotovoltaiky.</p>
+                <p>Ponúkame celkové fotovoltaické riešenia s viac ako 5 rokmi skúsenosti.</p>
             </div>
             <div class="features-grid" id="featuresContainer">
                 <div class="feature-item">
@@ -374,6 +378,33 @@
                     // Redirect to the language version
                     window.location.href = newPage;
                 });
+            });
+        }
+
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
             });
         }
         

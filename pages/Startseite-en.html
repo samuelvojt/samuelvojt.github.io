@@ -37,7 +37,12 @@
             <div class="logo">
             <img src="../images/Logo-Photoroom.png" alt="Omicron Logo">
         </div>
-            <ul class="nav-links">
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Homepage</a></li>
                  <li><a href="#about">About us</a></li>
                  <li><a href="#services">Services</a></li>
@@ -143,7 +148,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Why choose Omicron?</h2>
-                <p>We offer comprehensive solar solutions with years of experience and industry-leading guarantees.</p>
+                <p>We offer comprehensive solar solutions with years of experience.</p>
             </div>
             <div class="features-grid" id="featuresContainer">
                 <div class="feature-item">
@@ -374,6 +379,33 @@
                     // Redirect to the language version
                     window.location.href = newPage;
                 });
+            });
+        }
+
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
             });
         }
         
